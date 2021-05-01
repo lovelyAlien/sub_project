@@ -7,6 +7,5 @@ import java.util.List;
 public interface TownBookRepository extends JpaRepository<TownBook,Long> {
 
     List<TownBook> findAll();
-    TownBook findByTownBookId(Long townBookId);
 
 }

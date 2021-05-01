@@ -16,10 +16,11 @@ import javax.persistence.*;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class TownBook extends Timestamped {
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "townBookId", nullable = true)
-    private Long townBookId;
+    @Column
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
@@ -42,11 +43,6 @@ public class TownBook extends Timestamped {
 
     @Column(name = "category", nullable = true)
     private String category;
-
-
-
-
-
 
     public TownBook(TownBookDto townBookDto,User user){
         this.author = townBookDto.getAuthor();

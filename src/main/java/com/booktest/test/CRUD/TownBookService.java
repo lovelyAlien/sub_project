@@ -37,7 +37,9 @@ public class TownBookService {
     }
     @Transactional
     public TownBook updateTownBook(Long townBookId, User user, TownBookDto townBookDto){
-        TownBook townBook = townBookRepository.findByTownBookId(townBookId);
+        TownBook townBook = townBookRepository.findById(townBookId).orElseThrow(
+                () -> new IllegalArgumentException("오류코드")
+        );
         if(!townBook.getUser().getUserId().equals(user.getUserId())){
             throw new IllegalArgumentException("작성자만 수정가능합니다");
         }
@@ -46,7 +48,9 @@ public class TownBookService {
     }
 
     public ReturnTownBook deleteTownBook(Long townBookId,User user){
-        TownBook townBook = townBookRepository.findByTownBookId(townBookId);
+        TownBook townBook = townBookRepository.findById(townBookId).orElseThrow(
+                () -> new IllegalArgumentException("오류코드")
+        );
         if(!townBook.getUser().getUserId().equals(user.getUserId())){
             throw new IllegalArgumentException("작성자만 삭제가능합니다 ");
         }
